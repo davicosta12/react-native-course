@@ -43,7 +43,7 @@ export default {
     return json;
   },
 
-  getBarbers: async (lat = null, lng = null, address = null) => {
+  getBarbers: async (lat = null, lng = null, address: string | null = null) => {
     const token = await AsyncStorage.getItem('token');
 
     console.log("LAT", lat);
