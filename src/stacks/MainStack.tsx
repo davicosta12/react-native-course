@@ -37,23 +37,25 @@ const MainStack: FunctionComponent<Props> = (props: Props) => {
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="MainTab" component={MainTab} />
-      <Stack.Screen name="BarberDetail" component={BarberDetail} options={{
-        headerShown: true,
-        headerTitle: '',
-        headerStyle: {
-          backgroundColor: '#63C2D1',
-        },
-        headerLeft: () => (
-          <FeedBackNavPrev onPress={() => navigation.goBack()}>
-            <NavPrev width='43.4px' height='43.4px' fill='#fff' />
-          </FeedBackNavPrev>
-        ),
-        headerLeftContainerStyle: {
-          paddingHorizontal: 10
-        },
-      }} />
+      <Stack.Screen name="BarberDetail" component={BarberDetail}  />
     </Stack.Navigator>
   );
 };
 
 export default MainStack;
+
+// options={{
+//   headerShown: true,
+//   headerTitle: '',
+//   headerStyle: {
+//     backgroundColor: '#63C2D1',
+//   },
+//   headerLeft: () => (
+//     <FeedBackNavPrev onPress={() => navigation.goBack()}>
+//       <NavPrev width='43.4px' height='43.4px' fill='#fff' />
+//     </FeedBackNavPrev>
+//   ),
+//   headerLeftContainerStyle: {
+//     paddingHorizontal: 10
+//   },
+// }}

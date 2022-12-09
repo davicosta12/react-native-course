@@ -1,4 +1,5 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState, useEffect } from 'react';
+import Swiper from 'react-native-swiper';
 import {
   Avatar,
   BarberInformations,
@@ -20,13 +21,19 @@ import {
   ServiceInformation,
   ServicePrice,
   ServiceText,
-  ServiceTitle
+  ServiceTitle,
+  SwipeDot,
+  SwipeDotActive,
+  SwipeImage,
+  SwipeItem
 } from './styles';
 
 import FavoriteIcon from '../../assets/favorite.svg';
 import NavNext from '../../assets/nav_next.svg';
 import NavPrev from '../../assets/nav_prev.svg';
 import Stars from '../_commons/Stars';
+import BarberModal from '../_commons/BarberModal';
+import Api from '../../Api';
 
 interface Props {
   route: any,
@@ -35,12 +42,58 @@ interface Props {
 
 const BarberDetail: FunctionComponent<Props> = (props) => {
 
-  const { state } = props.route.params;
+  const [openModal, setOpenModal] = useState(false);
+  const [service, setService] = useState({} as any);
 
-  console.log(state)
+  const { state } = props.route.params;
+  const [userInfo, setUserInfo] = useState({
+    id: state.id,
+    avatar: state.avatar,
+    name: state.name,
+    stars: state.stars
+  });
+
+  // useEffect(() => {
+  //   const getBarberInfo = async () => {
+  //     const json = await Api.
+  //   }
+  // }, []);
 
   return (
     <Container>
+      <FeedBackNavPrev onPress={() => { }}>
+        <NavPrev width='43.4px' height='43.4px' fill='#fff' />
+      </FeedBackNavPrev>
+      <Swiper
+        style={{ height: 240 }}
+        dot={<SwipeDot />}
+        activeDot={<SwipeDotActive />}
+        paginationStyle={{ top: 15, right: 15, left: null, bottom: null }}
+        autoplay
+      >
+        <SwipeItem>
+          <SwipeImage
+            source={{ uri: 'https://149363815.v2.pressablecdn.com/wp-content/uploads/2021/01/5-melhores-Ideias-de-promocao-para-barbearia-1.jpg' }}
+            resizeMode='cover'
+          />
+        </SwipeItem>
+
+        <SwipeItem>
+          <SwipeImage
+            source={{ uri: 'https://149363815.v2.pressablecdn.com/wp-content/uploads/2021/01/5-melhores-Ideias-de-promocao-para-barbearia-1.jpg' }}
+            resizeMode='cover'
+          />
+        </SwipeItem>
+
+        <SwipeItem>
+          <SwipeImage
+            source={{ uri: 'https://149363815.v2.pressablecdn.com/wp-content/uploads/2021/01/5-melhores-Ideias-de-promocao-para-barbearia-1.jpg' }}
+            resizeMode='cover'
+          />
+        </SwipeItem>
+
+      </Swiper>
+
       <DetailArea>
 
         <BarberInformations>
@@ -61,7 +114,7 @@ const BarberDetail: FunctionComponent<Props> = (props) => {
             <ServiceTitle>Corte masculino</ServiceTitle>
             <ServicePrice>R$ 29,90</ServicePrice>
           </ServiceInformation>
-          <ScheduleButton>
+          <ScheduleButton onPress={() => setOpenModal(true)}>
             <ServiceText>Agendar</ServiceText>
           </ScheduleButton>
         </Service>
@@ -118,7 +171,14 @@ const BarberDetail: FunctionComponent<Props> = (props) => {
         </FeedBackContainer>
 
       </DetailArea>
-    </Container>
+
+      <BarberModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        user={state}
+        service={service}
+      />
+    </Container >
   );
 };
 

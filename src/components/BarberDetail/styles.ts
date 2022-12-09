@@ -125,9 +125,11 @@ export const FeedBackDescription = styled.Text`
 `;
 
 export const FeedBackNavPrev = styled.TouchableOpacity`
-  background-color: #fff;
-  width: 35px;
-  height: 35px;
+  width: 43.4px;
+  height: 43.4px;
+  position: absolute;
+  top: 0;
+  left: 15px;
 `;
 
 export const FeedBackNavNext = styled.TouchableOpacity`
@@ -135,3 +137,31 @@ export const FeedBackNavNext = styled.TouchableOpacity`
   width: 35px;
   height: 35px;
 `;
+
+export const SwipeDot = styled.View`
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 3px;
+`;
+
+export const SwipeDotActive = styled.View`
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  border-radius: 5px;
+  maring: 3px;
+`;
+
+export const SwipeItem = styled.View`
+  flex: 1;
+  background-color: #63C2D1;
+`;
+
+export const SwipeImage = styled.Image`
+  width: 100%;
+  height: 240px;
+`;
+
+export const FakeSwiper = styled.View``;
