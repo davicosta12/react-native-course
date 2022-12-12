@@ -26,6 +26,7 @@ export const Avatar = styled.Image`
   height: 110px;
   border-radius: 20px;
   margin-top: -10%;
+  border: solid 3px #fff;
 `;
 
 export const NameBarber = styled.Text`
