@@ -7,7 +7,7 @@ interface Props {
   data: any
 }
 
-const Area = styled.TouchableOpacity`
+const Area = styled.View`
   background-color: #FFFFFF;
   margin-bottom: 20px;
   border-radius: 20px;
@@ -31,7 +31,7 @@ const UserName = styled.Text`
   font-weight: bold;
 `;
 
-const SeeProfileButton = styled.View`
+const SeeProfileButton = styled.TouchableOpacity`
   width: 85px;
   height: 26px;
   border: 1px solid #4EADBE;
@@ -57,14 +57,14 @@ const BarberItem: FunctionComponent<Props> = (props) => {
   }
 
   return (
-    <Area onPress={handleBarberDetail}>
+    <Area>
       <Avatar source={{ uri: data.avatar }} />
       <InfoArea>
         <UserName>{data.name}</UserName>
 
         <Stars stars={data.stars} showNumber />
 
-        <SeeProfileButton>
+        <SeeProfileButton onPress={handleBarberDetail}>
           <SeeProfileButtonText>Ver Perfil</SeeProfileButtonText>
         </SeeProfileButton>
       </InfoArea>

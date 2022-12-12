@@ -5,7 +5,7 @@ interface Props {
   data: any
 }
 
-const Container = styled.TouchableOpacity` 
+const Container = styled.View` 
   background-color: #FFFFFF;
   margin-bottom: 20px;
   border-radius: 20px;

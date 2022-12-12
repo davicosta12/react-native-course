@@ -2,6 +2,7 @@ import { FunctionComponent, useState, useEffect } from 'react';
 import Swiper from 'react-native-swiper';
 import {
   Avatar,
+  BackNavPrev,
   BarberInformations,
   ButtonFavorite,
   Container,
@@ -17,6 +18,7 @@ import {
   NameBarber,
   NameStars,
   ScheduleButton,
+  Scroller,
   Service,
   ServiceInformation,
   ServicePrice,
@@ -33,7 +35,8 @@ import NavNext from '../../assets/nav_next.svg';
 import NavPrev from '../../assets/nav_prev.svg';
 import Stars from '../_commons/Stars';
 import BarberModal from '../_commons/BarberModal';
-import Api from '../../Api';
+import { Text } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
 
 interface Props {
   route: any,
@@ -53,23 +56,17 @@ const BarberDetail: FunctionComponent<Props> = (props) => {
     stars: state.stars
   });
 
-  // useEffect(() => {
-  //   const getBarberInfo = async () => {
-  //     const json = await Api.
-  //   }
-  // }, []);
+  const navigation = useNavigation();
 
   return (
     <Container>
-      <FeedBackNavPrev onPress={() => { }}>
-        <NavPrev width='43.4px' height='43.4px' fill='#fff' />
-      </FeedBackNavPrev>
       <Swiper
         style={{ height: 240 }}
         dot={<SwipeDot />}
         activeDot={<SwipeDotActive />}
-        paginationStyle={{ top: 15, right: 15, left: null, bottom: null }}
+        paginationStyle={{ top: 15, right: 15, left: null, bottom: null } as any}
         autoplay
+        autoplayTimeout={3.0}
       >
         <SwipeItem>
           <SwipeImage
@@ -80,22 +77,27 @@ const BarberDetail: FunctionComponent<Props> = (props) => {
 
         <SwipeItem>
           <SwipeImage
-            source={{ uri: 'https://149363815.v2.pressablecdn.com/wp-content/uploads/2021/01/5-melhores-Ideias-de-promocao-para-barbearia-1.jpg' }}
+            source={{ uri: 'https://www.belasis.com.br/wp-content/uploads/2019/09/Sistema-Barbearia-Blogpost-Belasis-Banner.png' }}
             resizeMode='cover'
           />
         </SwipeItem>
 
         <SwipeItem>
           <SwipeImage
-            source={{ uri: 'https://149363815.v2.pressablecdn.com/wp-content/uploads/2021/01/5-melhores-Ideias-de-promocao-para-barbearia-1.jpg' }}
+            source={{ uri: 'http://marcusmarques.com.br/wp-content/uploads/2019/08/barbearia.jpg' }}
             resizeMode='cover'
           />
         </SwipeItem>
 
+        <SwipeItem>
+          <SwipeImage
+            source={{ uri: 'https://st2.depositphotos.com/2931363/9695/i/600/depositphotos_96951996-stock-photo-young-handsome-man-in-barbershop.jpg' }}
+            resizeMode='cover'
+          />
+        </SwipeItem>
       </Swiper>
 
       <DetailArea>
-
         <BarberInformations>
           <Avatar source={{ uri: state?.avatar }} />
           <NameStars>
@@ -107,47 +109,21 @@ const BarberDetail: FunctionComponent<Props> = (props) => {
           </ButtonFavorite>
         </BarberInformations>
 
-        <ListServiceTitle>Lista de serviços</ListServiceTitle>
+        <Scroller>
+          <ListServiceTitle>Lista de serviços</ListServiceTitle>
 
-        <Service>
-          <ServiceInformation>
-            <ServiceTitle>Corte masculino</ServiceTitle>
-            <ServicePrice>R$ 29,90</ServicePrice>
-          </ServiceInformation>
-          <ScheduleButton onPress={() => setOpenModal(true)}>
-            <ServiceText>Agendar</ServiceText>
-          </ScheduleButton>
-        </Service>
-
-        <Service>
-          <ServiceInformation>
-            <ServiceTitle>Corte masculino</ServiceTitle>
-            <ServicePrice>R$ 29,90</ServicePrice>
-          </ServiceInformation>
-          <ScheduleButton>
-            <ServiceText>Agendar</ServiceText>
-          </ScheduleButton>
-        </Service>
-
-        <Service>
-          <ServiceInformation>
-            <ServiceTitle>Corte masculino</ServiceTitle>
-            <ServicePrice>R$ 29,90</ServicePrice>
-          </ServiceInformation>
-          <ScheduleButton>
-            <ServiceText>Agendar</ServiceText>
-          </ScheduleButton>
-        </Service>
-
-        <Service>
-          <ServiceInformation>
-            <ServiceTitle>Corte masculino</ServiceTitle>
-            <ServicePrice>R$ 29,90</ServicePrice>
-          </ServiceInformation>
-          <ScheduleButton>
-            <ServiceText>Agendar</ServiceText>
-          </ScheduleButton>
-        </Service>
+          {new Array(15).fill(0).map(() =>
+            <Service>
+              <ServiceInformation>
+                <ServiceTitle>Corte masculino</ServiceTitle>
+                <ServicePrice>R$ 29,90</ServicePrice>
+              </ServiceInformation>
+              <ScheduleButton onPress={() => setOpenModal(true)}>
+                <ServiceText>Agendar</ServiceText>
+              </ScheduleButton>
+            </Service>
+          )}
+        </Scroller>
 
         <FeedBackContainer>
 
@@ -172,13 +148,17 @@ const BarberDetail: FunctionComponent<Props> = (props) => {
 
       </DetailArea>
 
+      <BackNavPrev onPress={() => navigation.goBack()}>
+        <NavPrev width='42.5px' height='42.5px' fill='#fff' />
+      </BackNavPrev>
+
       <BarberModal
         openModal={openModal}
         setOpenModal={setOpenModal}
         user={state}
         service={service}
       />
-    </Container >
+    </Container>
   );
 };
 

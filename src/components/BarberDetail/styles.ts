@@ -5,9 +5,10 @@ export const Container = styled.SafeAreaView`
   background-color: #63C2D1;
 `;
 
+export const Scroller = styled.ScrollView``;
+
 export const DetailArea = styled.View`
-  width: 100%;
-  height: 80%;
+  height: 75%;
   position: absolute;
   bottom: 0;
   border-top-left-radius: 50px;
@@ -95,7 +96,7 @@ export const FeedBackContainer = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  margin: 30px 0;
 `;
 
 export const FeedBackCard = styled.View`
@@ -125,17 +126,20 @@ export const FeedBackDescription = styled.Text`
 `;
 
 export const FeedBackNavPrev = styled.TouchableOpacity`
-  width: 43.4px;
-  height: 43.4px;
-  position: absolute;
-  top: 0;
-  left: 15px;
+  width: 35px;
+  height: 35px;
 `;
 
 export const FeedBackNavNext = styled.TouchableOpacity`
-  background-color: #fff;
   width: 35px;
   height: 35px;
+`;
+
+export const BackNavPrev = styled.TouchableOpacity`
+  width: 43.4px;
+  height: 43.4px;
+  position: absolute;
+  top: 2;
 `;
 
 export const SwipeDot = styled.View`

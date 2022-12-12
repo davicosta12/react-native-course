@@ -87,7 +87,7 @@ const MainTab: FunctionComponent<Props> = (props) => {
           headerTitle: () => (
             <SearchArea>
               <SearchInput
-                placeholder="Digite o nome do barbeiro           "
+                placeholder="Digite o nome do barbeiro"
                 placeholderTextColor="#FFFFFF"
                 value={locationText}
                 onChangeText={t => setLocationText(t)}
